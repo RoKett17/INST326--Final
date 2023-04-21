@@ -7,7 +7,31 @@ class Traits:
         self.speed = speed
         self.armor = armor
         self.health = health
+
+
+    def sit1(self):
         
+        act1 = input("""You come across a herd of buffalo bathing in the mud.\n
+            Do you choose to attack or run? (a/r): """)
+        if act1 == "a":
+            if self.armor < 5 or self.attack < 5:
+                herd = ran.randint(1,3)
+                print(f"You were no match for the power of this herd, your health has decreased by {herd}.") 
+                self.health = self.health - herd
+            else:
+                buffalo = ran.randint(1,3)
+                self.health = self.health + buffalo
+                print("You feasted! You're health has increased")
+                #how can we turn this type of process into a magic metod?
+        else:
+            self.health -= 1 
+            print("You move on, looking for the next meal. You are hungry and lose health.")
+        print(f"""Your stats are currently:\n 
+            Health: {self.health}\n
+            Attack: {self.attack}\n
+            Speed: {self.speed}\n
+            Armor: {self.armor} """)
+
     def sit2(self):
         
         act2 = input("""You're super thirsty and come across a murky watering whole where 
@@ -51,6 +75,26 @@ class Traits:
         else:
             self.health -= 3
             print(f"Some of the food you ate was spoiled! Your health is now {self.health}")
+
+
+def startingAnimal():
+    alligatorDict, cheetaDict, elephantDict, buffaloDict = animalDicts()
+    print(alligatorDict)
+    print(cheetaDict)
+    print(elephantDict)
+    print(buffaloDict)
+
+    PAnimal = input("From the list above, which animal would you like to use?\n")
+    if PAnimal.upper() == "ALLIGATOR":
+        PAnimal = Traits(alligatorDict["name"], alligatorDict["attack"], alligatorDict["speed"], alligatorDict["armor"], alligatorDict["health"])
+    elif PAnimal.upper() == "CHEETA":
+        PAnimal = Traits(cheetaDict["name"], cheetaDict["attack"], cheetaDict["speed"], cheetaDict["armor"], cheetaDict["health"])
+    elif PAnimal.upper() == "ELEPHANT":
+        PAnimal = Traits(elephantDict["name"], elephantDict["attack"], elephantDict["speed"], elephantDict["armor"], elephantDict["health"])
+    elif PAnimal.upper() == "BUFFALO":
+        PAnimal = Traits(buffaloDict["name"], buffaloDict["attack"], buffaloDict["speed"], buffaloDict["armor"], buffaloDict["health"])
+
+    return PAnimal
 
 def animalDicts():
     alligatorDict = {"name":"Alligator", "attack":8, "speed":2, "armor":9, "health":7}
