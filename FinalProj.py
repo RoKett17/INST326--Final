@@ -30,6 +30,35 @@ class Traits:
             Speed: {self.speed}\n
             Armor: {self.armor} """)
         
+    def sit3(self):
+
+        food = {"boar", "monkey", "impala", "wolf", "snake", "hyena", "zebra", "ostrich"} 
+        spoiled = {"monkey", "impala", "ostrich"}
+        userOption = set()
+        #to ask 3 times 
+        print(f"You come across an assortment of carcasses in an abandoned cave.\n{food}")
+        i = 3
+        while i > 0 :
+            act3 = input(f"Choose one to eat! You have {i} pick(s) left: ")
+            #updates initalized set
+            userOption.add(act3)
+            i -= 1
+        #checks to see if any chosen food is spoiled and updates health accordinly 
+        overlap = bool(userOption & spoiled)
+        if overlap == False:
+            self.health += 3
+            print(f"You chose your food wisely. Your health is now {self.health}")
+        else:
+            self.health -= 3
+            print(f"Some of the food you ate was spoiled! Your health is now {self.health}")
+
+def animalDicts():
+    alligatorDict = {"name":"Alligator", "attack":8, "speed":2, "armor":9, "health":7}
+    cheetaDict = {"name":"Cheeta", "attack":10, "speed":10, "armor":3, "health":3}
+    elephantDict = {"name":"Elephant", "attack":6, "speed":4, "armor":7, "health":6}
+    buffaloDict = {"name":"Buffalo", "attack":2, "speed":2, "armor":4, "health":4}
+    return alligatorDict, cheetaDict, elephantDict, buffaloDict
+        
 def main():
     PAnimal = startingAnimal()
     sit1(PAnimal)
