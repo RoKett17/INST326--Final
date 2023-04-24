@@ -1,4 +1,4 @@
-import random as ran
+import random as ran, argparse
 class Traits:
     
     def __init__(self, name, attack, speed, armor, health):
@@ -108,6 +108,25 @@ def main():
     sit1(PAnimal)
     sit2(PAnimal)
     sit3(PAnimal)
+    
+def parse_args(arglist):
+    """Takes a list of command line arguments.
+    
+    Args:
+        arglist (list): list of command line arguments
+        
+    Returns:
+        A namespace object.
+    """
+    
+    parser = argparse.ArgumentParser()
+    parser.add_argument("name", help = "name of the animal")
+    parser.add_argument("attack", help = "attack level of the animal")
+    parser.add_argument("speed", help = "speed of the animal")
+    parser.add_argument("armor", help = "the armor level of the animal")
+    parser.add_argument("health", help = "the current health level of the animal")
+    args = parser.parse_args(arglist)
+    return args
 
 if __name__ == "__main__":
     main()
