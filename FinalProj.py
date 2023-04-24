@@ -31,6 +31,8 @@ class Traits:
             print("You move on, looking for the next meal. You are hungry and lose health.")
         print(f"""Your stats are currently:\nHealth: {self.health}\nAttack: {self.attack}\nSpeed: {self.speed}\nArmor: {self.armor} \n""")
 
+        return self.sit1
+    
     def sit2(self):
         
         act2 = input("""You're super thirsty and come across a murky watering whole where an agressive hippo is known to rest. \nDo you drink from it? (y/n): """)
@@ -40,13 +42,16 @@ class Traits:
             isHome = ran.randint(0, 1)
             if isHome == 0:
                 print("Drink up! Looks like the hippo wasn't home.")
-                self.health += 2
+                self.health + 2
             if isHome == 1:
                 print("The hippo was home and angry, the hippo attacked")
                 self.health -= ran.randint(2,4)
         else:
-            self.health -= 2 if self.speed > 6 else (self.health - 4 and print("You may not get to another watering hole for a while"))
+            self.health - 2 if self.speed > 6 else (self.health - 4 and print("You may not get to another watering hole for a while"))
         print(f"""Your stats are currently:\nHealth: {self.health}\nAttack: {self.attack}\nSpeed: {self.speed}\nArmor: {self.armor} \n""")
+
+        return self.sit2
+    
         
     def sit3(self):
 
@@ -54,7 +59,7 @@ class Traits:
         spoiled = {"monkey", "impala", "ostrich"}
         userOption = set()
         #to ask 3 times 
-        print(f"You come across an assortment of carcasses in an abandoned cave.\n{food}\n")
+        print(f"\nYou come across an assortment of carcasses in an abandoned cave.\n{food}\n")
         i = 3
         while i > 0 :
             act3 = input(f"Choose one to eat! You have {i} pick(s) left: ")
@@ -64,12 +69,14 @@ class Traits:
         #checks to see if any chosen food is spoiled and updates health accordinly 
         overlap = bool(userOption & spoiled)
         if overlap == False:
-            self.health += 3
+            self.health + 3
             print(f"You chose your food wisely. Your health is now {self.health}")
         else:
-            self.health -= 3
+            self.health - 3
             print(f"Some of the food you ate was spoiled! Your health is now {self.health}")
         print(f"""Your stats are currently:\nHealth: {self.health}\nAttack: {self.attack}\nSpeed: {self.speed}\nArmor: {self.armor} \n""")
+
+        return self.sit3
 
 
 def startingAnimal():
@@ -107,15 +114,12 @@ def animalStats():
     print(df)
         
 def game_flow(self):
-    situations = [self.sit1(), self.sit2(), self.sit3()]
+    situations = [self.sit1, self.sit2, self.sit3]
     if self.health > 0:
-        while situations > 0:
-            for sit in situations:
-                chosenSit = ran.choice(sit)
-                startingAnimal(chosenSit)
-                situations.pop(chosenSit)
-            else:
-                print("You survived everything! You WIN")
+        for sit in situations:
+            chosenSit = ran.choice(situations)()
+            situations.pop(situations.index(chosenSit))
+        print("You survived everything! You WIN")
     else:
         print("You died! *GAME OVER*")
 
