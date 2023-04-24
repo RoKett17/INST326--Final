@@ -1,5 +1,8 @@
+import argparse
 import random as ran
 import pandas as pd
+import sys 
+
 class Traits:
     
     def __init__(self, name, attack, speed, armor, health):
@@ -116,11 +119,40 @@ def animalStats():
                       index =['Attack', 'Speed', 'Armor', 'Health'], columns =['Alligator','Cheeta','Elephant','Buffalo'])
     print(df)
         
+def game_flow(self):
+    situations = [self.sit1(), self.sit2(), self.sit3()]
+    while self.health > 0:
+        for sit in situations:
+            chosenSit = ran.choice(sit)
+            startingAnimal(chosenSit)
+            situations.pop(chosenSit)
+        print("You survived everything! You WIN")
+    else:
+        print("You died! *GAME OVER*")
+
 def main():
     PAnimal = startingAnimal()
-    sit1(PAnimal)
-    sit2(PAnimal)
-    sit3(PAnimal)
+    game_flow(PAnimal)
+    
+def parse_args(arglist):
+    """Takes a list of command line arguments.
+    
+    Args:
+        arglist (list): list of command line arguments
+        
+    Returns:
+        A namespace object.
+    """
+    
+    parser = argparse.ArgumentParser()
+    parser.add_argument("name", help = "name of the animal")
+    parser.add_argument("attack", help = "attack level of the animal")
+    parser.add_argument("speed", help = "speed of the animal")
+    parser.add_argument("armor", help = "the armor level of the animal")
+    parser.add_argument("health", help = "the current health level of the animal")
+    args = parser.parse_args(arglist)
+    return args
 
 if __name__ == "__main__":
-    main()
+    args = parse_args(sys.argv[1:])
+    main(args.name, args.attack, args.speed, args.speed, args.armor, args.health)
