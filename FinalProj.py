@@ -1,4 +1,6 @@
 import random as ran, argparse
+import sys
+
 class Traits:
     
     def __init__(self, name, attack, speed, armor, health):
@@ -110,15 +112,13 @@ def game_flow(self):
             chosenSit = ran.choice(sit)
             startingAnimal(chosenSit)
             situations.pop(chosenSit)
-        print("You survived everything! You win!")
+        print("You survived everything! You WIN")
     else:
         print("You died! *GAME OVER*")
 
 def main():
     PAnimal = startingAnimal()
-    sit1(PAnimal)
-    sit2(PAnimal)
-    sit3(PAnimal)
+    game_flow(PAnimal)
     
 def parse_args(arglist):
     """Takes a list of command line arguments.
@@ -140,5 +140,6 @@ def parse_args(arglist):
     return args
 
 if __name__ == "__main__":
-    main()
+    args = parse_args(sys.argv[1:])
+    main(args.name, args.attack, args.speed, args.speed, args.armor, args.health)
     
