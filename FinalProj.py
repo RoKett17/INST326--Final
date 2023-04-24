@@ -102,7 +102,17 @@ def animalDicts():
     elephantDict = {"name":"Elephant", "attack":6, "speed":4, "armor":7, "health":6}
     buffaloDict = {"name":"Buffalo", "attack":2, "speed":2, "armor":4, "health":4}
     return alligatorDict, cheetaDict, elephantDict, buffaloDict
-        
+
+def game_flow(self):
+    situations = [self.sit1(), self.sit2(), self.sit3()]
+    while self.health > 0:
+        for sit in situations:
+            chosenSit = ran.choice(sit)
+            startingAnimal(chosenSit)
+            situations.pop(chosenSit)
+    else:
+        print("You died! *GAME OVER*")
+
 def main():
     PAnimal = startingAnimal()
     sit1(PAnimal)
@@ -111,3 +121,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
