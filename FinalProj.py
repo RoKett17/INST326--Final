@@ -78,21 +78,21 @@ class Traits:
 
 
 def startingAnimal():
-    alligatorDict, cheetaDict, elephantDict, buffaloDict = animalDicts()
-    print(alligatorDict)
-    print(cheetaDict)
-    print(elephantDict)
-    print(buffaloDict)
+    gator, cheeta, eleph, buff = animalDicts()
+    print(gator)
+    print(cheeta)
+    print(eleph)
+    print(buff)
 
     PAnimal = input("From the list above, which animal would you like to use?\n")
     if PAnimal.upper() == "ALLIGATOR":
-        PAnimal = Traits(alligatorDict["name"], alligatorDict["attack"], alligatorDict["speed"], alligatorDict["armor"], alligatorDict["health"])
+        PAnimal = Traits(gator["name"], gator["attack"], gator["speed"], gator["armor"], gator["health"])
     elif PAnimal.upper() == "CHEETA":
-        PAnimal = Traits(cheetaDict["name"], cheetaDict["attack"], cheetaDict["speed"], cheetaDict["armor"], cheetaDict["health"])
+        PAnimal = Traits(cheeta["name"], cheeta["attack"], cheeta["speed"], cheeta["armor"], cheeta["health"])
     elif PAnimal.upper() == "ELEPHANT":
-        PAnimal = Traits(elephantDict["name"], elephantDict["attack"], elephantDict["speed"], elephantDict["armor"], elephantDict["health"])
+        PAnimal = Traits(eleph["name"], eleph["attack"], eleph["speed"], eleph["armor"], eleph["health"])
     elif PAnimal.upper() == "BUFFALO":
-        PAnimal = Traits(buffaloDict["name"], buffaloDict["attack"], buffaloDict["speed"], buffaloDict["armor"], buffaloDict["health"])
+        PAnimal = Traits(buff["name"], buff["attack"], buff["speed"], buff["armor"], buff["health"])
 
     return PAnimal
 
