@@ -15,31 +15,25 @@ class Traits:
 
     def sit1(self):
         
-        act1 = input("""You come across a herd of buffalo bathing in the mud.\n
-            Do you choose to attack or run? (a/r): """)
+        act1 = input("""\nYou come across a herd of buffalo bathing in the mud.\nDo you choose to attack or run? (a/r): """)
         if act1 == "a":
             if self.armor < 5 or self.attack < 5:
                 herd = ran.randint(1,3)
-                print(f"You were no match for the power of this herd, your health has decreased by {herd}.") 
+                print(f"\nYou were no match for the power of this herd, your health has decreased by {herd}.\n") 
                 self.health = self.health - herd
             else:
                 buffalo = ran.randint(1,3)
                 self.health = self.health + buffalo
-                print("You feasted! You're health has increased")
+                print("\n\nYou feasted! You're health has increased")
                 #how can we turn this type of process into a magic metod?
         else:
             self.health -= 1 
             print("You move on, looking for the next meal. You are hungry and lose health.")
-        print(f"""Your stats are currently:\n 
-            Health: {self.health}\n
-            Attack: {self.attack}\n
-            Speed: {self.speed}\n
-            Armor: {self.armor} """)
+        print(f"""Your stats are currently:\nHealth: {self.health}\nAttack: {self.attack}\nSpeed: {self.speed}\nArmor: {self.armor} \n""")
 
     def sit2(self):
         
-        act2 = input("""You're super thirsty and come across a murky watering whole where 
-                    an agressive hippo is known to rest. \nDo you drink from it? (y/n)""")
+        act2 = input("""You're super thirsty and come across a murky watering whole where an agressive hippo is known to rest. \nDo you drink from it? (y/n): """)
         if act2 not in ("y", "n"):
             print("Please enter either y or n")
         elif act2 == "y":
@@ -52,11 +46,7 @@ class Traits:
                 self.health -= ran.randint(2,4)
         else:
             self.health -= 2 if self.speed > 6 else (self.health - 4 and print("You may not get to another watering hole for a while"))
-        print(f"""Your stats are currently:\n 
-            Health: {self.health}\n
-            Attack: {self.attack}\n
-            Speed: {self.speed}\n
-            Armor: {self.armor} """)
+        print(f"""Your stats are currently:\nHealth: {self.health}\nAttack: {self.attack}\nSpeed: {self.speed}\nArmor: {self.armor} \n""")
         
     def sit3(self):
 
@@ -64,7 +54,7 @@ class Traits:
         spoiled = {"monkey", "impala", "ostrich"}
         userOption = set()
         #to ask 3 times 
-        print(f"You come across an assortment of carcasses in an abandoned cave.\n{food}")
+        print(f"You come across an assortment of carcasses in an abandoned cave.\n{food}\n")
         i = 3
         while i > 0 :
             act3 = input(f"Choose one to eat! You have {i} pick(s) left: ")
@@ -79,12 +69,13 @@ class Traits:
         else:
             self.health -= 3
             print(f"Some of the food you ate was spoiled! Your health is now {self.health}")
+        print(f"""Your stats are currently:\nHealth: {self.health}\nAttack: {self.attack}\nSpeed: {self.speed}\nArmor: {self.armor} \n""")
 
 
 def startingAnimal():
     gator, cheeta, eleph, buff = animalDicts()
 
-    PAnimal = input("From the list above, which animal would you like to use?\n")
+    PAnimal = input("From the list above, which animal would you like to use?\n\nChoice: ")
     if PAnimal.upper() == "ALLIGATOR":
         PAnimal = Traits(gator["name"], gator["attack"], gator["speed"], gator["armor"], gator["health"])
     elif PAnimal.upper() == "CHEETA":
@@ -117,12 +108,14 @@ def animalStats():
         
 def game_flow(self):
     situations = [self.sit1(), self.sit2(), self.sit3()]
-    while self.health > 0:
-        for sit in situations:
-            chosenSit = ran.choice(sit)
-            startingAnimal(chosenSit)
-            situations.pop(chosenSit)
-        print("You survived everything! You WIN")
+    if self.health > 0:
+        while situations > 0:
+            for sit in situations:
+                chosenSit = ran.choice(sit)
+                startingAnimal(chosenSit)
+                situations.pop(chosenSit)
+            else:
+                print("You survived everything! You WIN")
     else:
         print("You died! *GAME OVER*")
 
@@ -130,26 +123,6 @@ def main():
     animalStats()
     PAnimal = startingAnimal()
     game_flow(PAnimal)
-    
-def parse_args(arglist):
-    """Takes a list of command line arguments.
-    
-    Args:
-        arglist (list): list of command line arguments
-        
-    Returns:
-        A namespace object.
-    """
-    
-    parser = argparse.ArgumentParser()
-    parser.add_argument("name", help = "name of the animal")
-    parser.add_argument("attack", help = "attack level of the animal")
-    parser.add_argument("speed", help = "speed of the animal")
-    parser.add_argument("armor", help = "the armor level of the animal")
-    parser.add_argument("health", help = "the current health level of the animal")
-    args = parser.parse_args(arglist)
-    return args
 
 if __name__ == "__main__":
-    args = parse_args(sys.argv[1:])
-    main(args.name, args.attack, args.speed, args.speed, args.armor, args.health)
+    main()
