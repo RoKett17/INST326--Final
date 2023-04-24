@@ -1,6 +1,5 @@
-import random as ran, argparse
-import sys
-
+import random as ran
+import pandas as pd
 class Traits:
     
     def __init__(self, name, attack, speed, armor, health):
@@ -105,41 +104,23 @@ def animalDicts():
     buffaloDict = {"name":"Buffalo", "attack":2, "speed":2, "armor":4, "health":4}
     return alligatorDict, cheetaDict, elephantDict, buffaloDict
 
-def game_flow(self):
-    situations = [self.sit1(), self.sit2(), self.sit3()]
-    while self.health > 0:
-        for sit in situations:
-            chosenSit = ran.choice(sit)
-            startingAnimal(chosenSit)
-            situations.pop(chosenSit)
-        print("You survived everything! You WIN")
-    else:
-        print("You died! *GAME OVER*")
 
+def animalStats():
+    alligatorStats = ['8','2','9','7']
+    cheetaStats = ['10','10','3','3']
+    elephantStats = ['6','4','7','6']
+    buffaloStats = ['2','2','4','4']
+
+    #Create DataFrame from lists
+    df = pd.DataFrame(list(zip(alligatorStats, cheetaStats, elephantStats, buffaloStats)), 
+                      index =['Attack', 'Speed', 'Armor', 'Health'], columns =['Alligator','Cheeta','Elephant','Buffalo'])
+    print(df)
+        
 def main():
     PAnimal = startingAnimal()
-    game_flow(PAnimal)
-    
-def parse_args(arglist):
-    """Takes a list of command line arguments.
-    
-    Args:
-        arglist (list): list of command line arguments
-        
-    Returns:
-        A namespace object.
-    """
-    
-    parser = argparse.ArgumentParser()
-    parser.add_argument("name", help = "name of the animal")
-    parser.add_argument("attack", help = "attack level of the animal")
-    parser.add_argument("speed", help = "speed of the animal")
-    parser.add_argument("armor", help = "the armor level of the animal")
-    parser.add_argument("health", help = "the current health level of the animal")
-    args = parser.parse_args(arglist)
-    return args
+    sit1(PAnimal)
+    sit2(PAnimal)
+    sit3(PAnimal)
 
 if __name__ == "__main__":
-    args = parse_args(sys.argv[1:])
-    main(args.name, args.attack, args.speed, args.speed, args.armor, args.health)
-    
+    main()
