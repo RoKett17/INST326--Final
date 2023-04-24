@@ -110,6 +110,7 @@ def game_flow(self):
             chosenSit = ran.choice(sit)
             startingAnimal(chosenSit)
             situations.pop(chosenSit)
+        print("You survived everything! You win!")
     else:
         print("You died! *GAME OVER*")
 
