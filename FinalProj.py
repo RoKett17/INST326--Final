@@ -131,28 +131,9 @@ def game_flow(self):
         print("You died! *GAME OVER*")
 
 def main():
+    animalStats()
     PAnimal = startingAnimal()
     game_flow(PAnimal)
-    
-def parse_args(arglist):
-    """Takes a list of command line arguments.
-    
-    Args:
-        arglist (list): list of command line arguments
-        
-    Returns:
-        A namespace object.
-    """
-    
-    parser = argparse.ArgumentParser()
-    parser.add_argument("name", help = "name of the animal")
-    parser.add_argument("attack", help = "attack level of the animal")
-    parser.add_argument("speed", help = "speed of the animal")
-    parser.add_argument("armor", help = "the armor level of the animal")
-    parser.add_argument("health", help = "the current health level of the animal")
-    args = parser.parse_args(arglist)
-    return args
 
 if __name__ == "__main__":
-    args = parse_args(sys.argv[1:])
-    main(args.name, args.attack, args.speed, args.speed, args.armor, args.health)
+    main()
