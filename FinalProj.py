@@ -38,7 +38,7 @@ class Traits:
         act2 = input("""You're super thirsty and come across a murky watering whole where an agressive hippo is known to rest. \nDo you drink from it? (y/n): """)
         if act2 not in ("y", "n"):
             print("Please enter either y or n")
-        elif act2 == "y":
+        if act2 == "y":
             isHome = ran.randint(0, 1)
             if isHome == 0:
                 print("Drink up! Looks like the hippo wasn't home.")
@@ -46,8 +46,8 @@ class Traits:
             if isHome == 1:
                 print("The hippo was home and angry, the hippo attacked")
                 self.health -= ran.randint(2,4)
-        else:
-            self.health - 2 if self.speed > 6 else (self.health - 4 and print("You may not get to another watering hole for a while"))
+        elif act2 == "n":
+            self.health -= 2 if self.speed > 6 else (self.health - 4 and print("You may not get to another watering hole for a while"))
         print(f"""Your stats are currently:\nHealth: {self.health}\nAttack: {self.attack}\nSpeed: {self.speed}\nArmor: {self.armor} \n""")
 
         return self.sit2
@@ -69,10 +69,10 @@ class Traits:
         #checks to see if any chosen food is spoiled and updates health accordinly 
         overlap = bool(userOption & spoiled)
         if overlap == False:
-            self.health + 3
+            self.health += 3
             print(f"You chose your food wisely. Your health is now {self.health}")
         else:
-            self.health - 3
+            self.health -= 3
             print(f"Some of the food you ate was spoiled! Your health is now {self.health}")
         print(f"""Your stats are currently:\nHealth: {self.health}\nAttack: {self.attack}\nSpeed: {self.speed}\nArmor: {self.armor} \n""")
 
@@ -122,6 +122,7 @@ def game_flow(self):
                 print("You died! *GAME OVER*")
             else:
                 situations.pop(situations.index(chosenSit))
+    if len(situations) == 0:
         print("You survived everything! You WIN")
 
 
