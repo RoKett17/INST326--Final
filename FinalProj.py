@@ -117,6 +117,7 @@ def game_flow(self):
     situations = [self.sit1, self.sit2, self.sit3]
     if self.health > 0:
         for sit in situations:
+            print(situations)
             chosenSit = ran.choice(situations)()
             situations.pop(situations.index(chosenSit))
         print("You survived everything! You WIN")
