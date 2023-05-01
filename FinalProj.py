@@ -18,47 +18,42 @@ class Traits:
         act1 = input("""\nYou come across a herd of buffalo bathing in the mud.\nDo you choose to attack or run? (a/r): """)
         if act1 == "a":
             if self.armor < 5 or self.attack < 5:
-                herd = ran.randint(1,3)
-                print(f"\nYou were no match for the power of this herd, your health has decreased by {herd}.\n") 
-                self.health = self.health - herd
+                #herd = ran.randint(1,3)
+                print(f"\nYou were no match for the power of this herd, your health has decreased by {4}.\n") 
+                self.__isub__(4)
             else:
-                buffalo = ran.randint(1,3)
-                self.health = self.health + buffalo
+                self.__iadd__(3)
                 print("\n\nYou feasted! You're health has increased")
-                #how can we turn this type of process into a magic metod?
         else:
-            self.health -= 1 
-            print("You move on, looking for the next meal. You are hungry and lose health.")
-        print(f"""Your stats are currently:\nHealth: {self.health}\nAttack: {self.attack}\nSpeed: {self.speed}\nArmor: {self.armor} \n""")
-
+            print("You move on, looking for the next meal. You are hungry and lose health.")                           #fstring expression (5/6)
+        print(f"""Your stats are currently:\nAttack: {self.attack}\nSpeed: {self.speed}\nArmor: {self.armor} \nHealth: {self.__isub__(ran.randint(1, 3))}\n""")
         return self.sit1
     
     def sit2(self):
         
-        act2 = input("""You're super thirsty and come across a murky watering whole where an agressive hippo is known to rest. \nDo you drink from it? (y/n): """)
+        act2 = input("""You're super thirsty and come across a murky watering hole where an agressive hippo is known to rest. \nDo you drink from it? (y/n): """)
         if act2 not in ("y", "n"):
             print("Please enter either y or n")
         if act2 == "y":
             isHome = ran.randint(0, 1)
             if isHome == 0:
                 print("Drink up! Looks like the hippo wasn't home.")
-                self.health + 2
+                self.__iadd__(2)
             if isHome == 1:
                 print("The hippo was home and angry, the hippo attacked")
-                self.health -= ran.randint(2,4)
+                self.__isub__(ran.randint(2,4))
         elif act2 == "n":
-            self.health -= 2 if self.speed > 6 else (self.health - 4 and print("You may not get to another watering hole for a while"))
-        print(f"""Your stats are currently:\nHealth: {self.health}\nAttack: {self.attack}\nSpeed: {self.speed}\nArmor: {self.armor} \n""")
+            #conditional expression (1/6)
+            self.__isub__(2) if self.speed > 6 else self.__isub__(4) and print("You may not get to another watering hole for a while")
+        print(f"""Your stats are currently:\nAttack: {self.attack}\nSpeed: {self.speed}\nArmor: {self.armor} \nHealth: {self.health}\n""")
 
         return self.sit2
-    
         
     def sit3(self):
 
         food = {"boar", "monkey", "impala", "wolf", "snake", "hyena", "zebra", "ostrich"} 
         spoiled = {"monkey", "impala", "ostrich"}
-        userOption = set()
-        #to ask 3 times 
+        userOption = set() 
         print(f"\nYou come across an assortment of carcasses in an abandoned cave.\n{food}\n")
         i = 3
         while i > 0 :
@@ -66,20 +61,27 @@ class Traits:
             #updates initalized set
             userOption.add(act3)
             i -= 1
-        #checks to see if any chosen food is spoiled and updates health accordinly 
+        #set operations (4/6) 
         overlap = bool(userOption & spoiled)
         if overlap == False:
-            self.health += 3
-            print(f"You chose your food wisely. Your health is now {self.health}")
+            print(f"You chose your food wisely. Your health is now {self.__iadd__(3)}")
         else:
-            self.health -= 3
-            print(f"Some of the food you ate was spoiled! Your health is now {self.health}")
-        print(f"""Your stats are currently:\nHealth: {self.health}\nAttack: {self.attack}\nSpeed: {self.speed}\nArmor: {self.armor} \n""")
+            print(f"Some of the food you ate was spoiled! Your health is now {self.__isub__(3)}")
+        print(f"""Your stats are currently:\nAttack: {self.attack}\nSpeed: {self.speed}\nArmor: {self.armor} \nHealth: {self.health}\n""")
 
         return self.sit3
-
+    
+    #magic methods (2/6)
+    def __isub__(self, other):
+        self.health -= other
+        return self.health
+    
+    def __iadd__(self, other):
+        self.health += other
+        return self.health
 
 def startingAnimal():
+    #sequence unpacking (3/6)
     gator, cheeta, eleph, buff = animalDicts()
 
     PAnimal = input("From the list above, which animal would you like to use?\n\nChoice: ")
@@ -115,16 +117,18 @@ def animalStats():
         
 def game_flow(self):
     situations = [self.sit1, self.sit2, self.sit3]
-    if self.health > 0:
-        for sit in situations:
-            chosenSit = ran.choice(situations)()
-            if self.health <= 0:
-                print("You died! *GAME OVER*")
-            else:
-                situations.pop(situations.index(chosenSit))
-    if len(situations) == 0:
-        print("You survived everything! You WIN")
-
+    while True:
+        if self.health > 0:
+            for sit in situations:
+                chosenSit = ran.choice(situations)()
+                if self.health <= 0:
+                    print("You died! *GAME OVER*")
+                    break
+                else:
+                    situations.pop(situations.index(chosenSit))
+                    if len(situations) == 0:
+                        print("You survived everything! *You WIN*")
+                    break
 
 def main():
     animalStats()
