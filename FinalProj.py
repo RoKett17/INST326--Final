@@ -125,7 +125,6 @@ def game_flow(self):
                 break
             else:
                 situations.pop(situations.index(chosenSit))
-    if len(situations) == 0:
         print("You survived everything! You WIN")
         
 
