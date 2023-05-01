@@ -118,10 +118,12 @@ def game_flow(self):
     if self.health > 0:
         for sit in situations:
             chosenSit = ran.choice(situations)()
-            situations.pop(situations.index(chosenSit))
+            if self.health <= 0:
+                print("You died! *GAME OVER*")
+            else:
+                situations.pop(situations.index(chosenSit))
         print("You survived everything! You WIN")
-    else:
-        print("You died! *GAME OVER*")
+
 
 def main():
     animalStats()
