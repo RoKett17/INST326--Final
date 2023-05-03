@@ -79,6 +79,11 @@ class Traits:
     def __iadd__(self, other):
         self.health += other
         return self.health
+    
+    def sort_animals_by_stat(animal_list, stat):
+        sorted_list = sorted(animal_list, key=lambda a: getattr(a, stat), reverse=True)
+        for animal in sorted_list:
+            print(f"{animal.name} ({getattr(animal, stat)} {stat})")
 
 def startingAnimal():
     #sequence unpacking (3/6)
@@ -134,6 +139,7 @@ def main():
     animalStats()
     PAnimal = startingAnimal()
     game_flow(PAnimal)
+    Traits.sort_animals_by_stat([PAnimal, Traits("Lion", 9, 5, 4, 6), Traits("Giraffe", 4, 3, 7, 8)], "attack")
 
 if __name__ == "__main__":
     main()
