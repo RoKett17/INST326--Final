@@ -2,6 +2,7 @@ import argparse
 import random as ran
 import pandas as pd
 import sys 
+import re
 
 class Traits:
     
@@ -80,10 +81,16 @@ class Traits:
         self.health += other
         return self.health
     
-    def sort_animals_by_stat(animal_list, stat):
-        sorted_list = sorted(animal_list, key=lambda a: getattr(a, stat), reverse=True)
-        for animal in sorted_list:
-            print(f"{animal.name} ({getattr(animal, stat)} {stat})")
+    def select_animal_by_name(animal_list):
+        while True:
+            name = input("Enter the name of the animal you want to select: ")
+            if not re.match(r"^[A-Za-z]+$", name):
+                print("Invalid animal name. Please enter letters only.")
+                continue
+            for animal in animal_list:
+                if animal.name.lower() == name.lower():
+                    return animal
+            print("Animal not found. Please enter a valid animal name.")
 
 def startingAnimal():
     #sequence unpacking (3/6)
@@ -136,10 +143,10 @@ def game_flow(self):
                     break
 
 def main():
-    animalStats()
-    PAnimal = startingAnimal()
-    game_flow(PAnimal)
-    Traits.sort_animals_by_stat([PAnimal, Traits("Lion", 9, 5, 4, 6), Traits("Giraffe", 4, 3, 7, 8)], "attack")
+  animalStats()
+  animal_list = [Traits("Alligator", 8, 2, 9, 7), Traits("Cheeta", 10, 10, 3, 3), Traits("Elephant", 6, 4, 7, 6), Traits("Buffalo", 2, 2, 4, 4)]
+  PAnimal = Traits.select_animal_by_name(animal_list)
+  game_flow(PAnimal)
 
 if __name__ == "__main__":
     main()
