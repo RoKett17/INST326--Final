@@ -129,17 +129,18 @@ def animalStats():
         
 def game_flow(self):
     situations = [self.sit1, self.sit2, self.sit3]
-    if self.health > 0:
-        for sit in situations:
-            chosenSit = ran.choice(situations)()
-            if self.health <= 0:
-                print("You died! *GAME OVER*")
-            else:
-                situations.pop(situations.index(chosenSit))
-    if len(situations) == 0:
-        print("You survived everything! You WIN")
-
-
+    while True:
+        if self.health > 0:
+            for sit in situations:
+                chosenSit = ran.choice(situations)()
+                if self.health <= 0:
+                    print("You died! *GAME OVER*")
+                    break
+                else:
+                    situations.pop(situations.index(chosenSit))
+                    if len(situations) == 0:
+                        print("You survived everything! *You WIN*")
+                    break
 
 def main():
   animalStats()
