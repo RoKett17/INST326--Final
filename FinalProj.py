@@ -5,8 +5,28 @@ import sys
 import re
 
 class Traits:
+    """Represents traits of different animals.
+    
+    Attributes:
+        name: The name of the animal
+        attack: The specified animal's starting attack level
+        speed: The specified animal's starting speed level
+        armor: The specified animal's starting armor level
+        health: The specified animal's starting health level
+    """
     
     def __init__(self, name, attack, speed, armor, health):
+        """Creates an animal object.
+        
+        Args:
+            name (str):The animal's name
+            attack (int): The animal's attack level from 0-10
+            speed (int): The animal's speed level from 0-10
+            armor (int): The animal's armor level from 0-10
+            health (int): The animal's health level from 0-10
+            
+        Side effects: Creates an animal object
+        """
         self.name = name
         self.attack = attack
         self.speed = speed
@@ -15,6 +35,13 @@ class Traits:
 
 
     def sit1(self):
+        """Presents the player with the first scenario. Based on the player's
+            answer, current health, and current attack levels, their health will
+            either decrease by 4 levels, or their health will increase by 3.
+            
+        Args:
+            None 
+        """
         
         act1 = input("""\nYou come across a herd of buffalo bathing in the mud.\nDo you choose to attack or run? (a/r): """)
         if act1 == "a":
@@ -31,6 +58,15 @@ class Traits:
         return self.sit1
     
     def sit2(self):
+        """Presents the player with the second scenario. If the player answers
+            'y' to the prompt, a random interger is assigned to the 'isHome'
+            variable that will determine whether the player is attacked or not.
+            If the player answers 'n' to the original prompt, the player's
+            stats are decreased based on their starting speed.
+            
+        Args:
+            None
+        """
         
         act2 = input("""You're super thirsty and come across a murky watering hole where an agressive hippo is known to rest. \nDo you drink from it? (y/n): """)
         if act2 not in ("y", "n"):
@@ -40,7 +76,7 @@ class Traits:
             if isHome == 0:
                 print("Drink up! Looks like the hippo wasn't home.")
                 self.__iadd__(2)
-            if isHome == 1:
+            elif isHome == 1:
                 print("The hippo was home and angry, the hippo attacked")
                 self.__isub__(ran.randint(2,4))
         elif act2 == "n":
@@ -51,6 +87,11 @@ class Traits:
         return self.sit2
         
     def sit3(self):
+        """Presents the player with the third scenario. The player will choose
+            three different animals from a list of animals. If the player
+            chooses an animal that is considered 'spoiled', their health will
+            be decreased.
+        """
 
         food = {"boar", "monkey", "impala", "wolf", "snake", "hyena", "zebra", "ostrich"} 
         spoiled = {"monkey", "impala", "ostrich"}
