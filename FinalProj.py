@@ -58,9 +58,14 @@ class Traits:
         print(f"\nYou come across an assortment of carcasses in an abandoned cave.\n{food}\n")
         i = 3
         while i > 0 :
-            act3 = input(f"Choose one to eat! You have {i} pick(s) left: ")
+            act3 = input(f"\nChoose one to eat! You have {i} pick(s) left: ")
             #updates initalized set
             userOption.add(act3)
+            if act3.lower() in food:
+                food.remove(act3)
+            else:
+                pass
+            print(f"{food}/n")
             i -= 1
         #set operations (4/6) 
         overlap = bool(userOption & spoiled)
