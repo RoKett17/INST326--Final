@@ -46,18 +46,23 @@ class Traits:
             The animal's state after the situation is complete.
         """
         
-        act1 = input("""\nYou come across a herd of buffalo bathing in the mud.\nDo you choose to attack or run? (a/r): """)
+        act1 = input("""\nYou come across a herd of buffalo bathing in the mud.
+                    \nDo you choose to attack or run? (a/r): """)
         if act1 == "a":
             if self.armor < 5 or self.attack < 5:
                 #herd = ran.randint(1,3)
-                print(f"\nYou were no match for the power of this herd, your health has decreased by {4}.\n") 
+                print(f"""\nYou were no match for the power of this herd, 
+                    your health has decreased by {4}.\n""") 
                 self.__isub__(4)
             else:
                 self.__iadd__(3)
                 print("\n\nYou feasted! You're health has increased")
         else:
-            print("You move on, looking for the next meal. You are hungry and lose health.")                           #fstring expression (5/6)
-        print(f"""Your stats are currently:\nAttack: {self.attack}\nSpeed: {self.speed}\nArmor: {self.armor} \nHealth: {self.__isub__(ran.randint(1, 3))}\n""")
+            print("""You move on, looking for the next meal. You are hungry and 
+                  lose health.""")                     #fstring expression (5/6)
+        print(f"""Your stats are currently:\nAttack: {self.attack}\n
+              Speed: {self.speed}\nArmor: {self.armor} \n
+              Health: {self.__isub__(ran.randint(1, 3))}\n""")
         return self.sit1
     
     def sit2(self):
@@ -74,7 +79,9 @@ class Traits:
             The animal's state after the situation is complete.
         """
         
-        act2 = input("""You're super thirsty and come across a murky watering hole where an agressive hippo is known to rest. \nDo you drink from it? (y/n): """)
+        act2 = input("""You're super thirsty and come across a murky watering 
+                     hole where an agressive hippo is known to rest. \n
+                     Do you drink from it? (y/n): """)
         if act2 not in ("y", "n"):
             print("Please enter either y or n")
         if act2 == "y":
@@ -87,8 +94,11 @@ class Traits:
                 self.__isub__(ran.randint(2,4))
         elif act2 == "n":
             #conditional expression (1/6)
-            self.__isub__(2) if self.speed > 6 else self.__isub__(4) and print("You may not get to another watering hole for a while")
-        print(f"""Your stats are currently:\nAttack: {self.attack}\nSpeed: {self.speed}\nArmor: {self.armor} \nHealth: {self.health}\n""")
+            self.__isub__(2) if self.speed > 6 else self.__isub__(4) and \
+                print("You may not get to another watering hole for a while")
+        print(f"""Your stats are currently:\nAttack: {self.attack}\n
+              Speed: {self.speed}\nArmor: {self.armor} \n
+              Health: {self.health}\n""")
 
         return self.sit2
         
@@ -106,7 +116,8 @@ class Traits:
                 The animal's situation after the situation is complete.
         """
 
-        food = {"boar", "monkey", "impala", "wolf", "snake", "hyena", "zebra", "ostrich"} 
+        food = {"boar", "monkey", "impala", "wolf", "snake", "hyena", "zebra", 
+                "ostrich"} 
         spoiled = {"monkey", "impala", "ostrich"}
         userOption = set() 
         i = 3
@@ -121,10 +132,14 @@ class Traits:
         #set operations (4/6) 
         overlap = bool(userOption & spoiled)
         if overlap == False:
-            print(f"You chose your food wisely. Your health is now {self.__iadd__(3)}")
+            print(f"""You chose your food wisely. Your health is now 
+                  {self.__iadd__(3)}""")
         else:
-            print(f"Some of the food you ate was spoiled! Your health is now {self.__isub__(3)}")
-        print(f"""Your stats are currently:\nAttack: {self.attack}\nSpeed: {self.speed}\nArmor: {self.armor} \nHealth: {self.health}\n""")
+            print(f"""Some of the food you ate was spoiled! Your health is now 
+                  {self.__isub__(3)}""")
+        print(f"""Your stats are currently:\nAttack: {self.attack}\n
+              Speed: {self.speed}\nArmor: {self.armor} \n
+              Health: {self.health}\n""")
 
         return self.sit3
     
@@ -186,15 +201,20 @@ def startingAnimal():
     #sequence unpacking (3/6)
     gator, cheeta, eleph, buff = animalDicts()
 
-    PAnimal = input("From the list above, which animal would you like to use?\n\nChoice: ")
+    PAnimal = input("""From the list above, which animal would you like to use?
+                    \n\nChoice: """)
     if PAnimal.upper() == "ALLIGATOR":
-        PAnimal = Traits(gator["name"], gator["attack"], gator["speed"], gator["armor"], gator["health"])
+        PAnimal = Traits(gator["name"], gator["attack"], gator["speed"], 
+                         gator["armor"], gator["health"])
     elif PAnimal.upper() == "CHEETA":
-        PAnimal = Traits(cheeta["name"], cheeta["attack"], cheeta["speed"], cheeta["armor"], cheeta["health"])
+        PAnimal = Traits(cheeta["name"], cheeta["attack"], cheeta["speed"], 
+                         cheeta["armor"], cheeta["health"])
     elif PAnimal.upper() == "ELEPHANT":
-        PAnimal = Traits(eleph["name"], eleph["attack"], eleph["speed"], eleph["armor"], eleph["health"])
+        PAnimal = Traits(eleph["name"], eleph["attack"], eleph["speed"], 
+                         eleph["armor"], eleph["health"])
     elif PAnimal.upper() == "BUFFALO":
-        PAnimal = Traits(buff["name"], buff["attack"], buff["speed"], buff["armor"], buff["health"])
+        PAnimal = Traits(buff["name"], buff["attack"], buff["speed"], 
+                         buff["armor"], buff["health"])
 
     return PAnimal
 
@@ -204,10 +224,14 @@ def animalDicts():
     Returns:
         Each dictionary for each animal.
     """
-    alligatorDict = {"name":"Alligator", "attack":8, "speed":2, "armor":9, "health":7}
-    cheetaDict = {"name":"Cheeta", "attack":10, "speed":10, "armor":3, "health":3}
-    elephantDict = {"name":"Elephant", "attack":6, "speed":4, "armor":7, "health":6}
-    buffaloDict = {"name":"Buffalo", "attack":2, "speed":2, "armor":4, "health":4}
+    alligatorDict = {"name":"Alligator", "attack":8, "speed":2, "armor":9, 
+                     "health":7}
+    cheetaDict = {"name":"Cheeta", "attack":10, "speed":10, "armor":3, 
+                  "health":3}
+    elephantDict = {"name":"Elephant", "attack":6, "speed":4, "armor":7, 
+                    "health":6}
+    buffaloDict = {"name":"Buffalo", "attack":2, "speed":2, "armor":4, 
+                   "health":4}
     return alligatorDict, cheetaDict, elephantDict, buffaloDict
 
 
@@ -223,8 +247,10 @@ def animalStats():
     buffaloStats = ['2','2','4','4']
 
     #Create DataFrame from lists
-    df = pd.DataFrame(list(zip(alligatorStats, cheetaStats, elephantStats, buffaloStats)), 
-                      index =['Attack', 'Speed', 'Armor', 'Health'], columns =['Alligator','Cheeta','Elephant','Buffalo'])
+    df = pd.DataFrame(list(zip(alligatorStats, cheetaStats, elephantStats, 
+                               buffaloStats)), 
+                      index =['Attack', 'Speed', 'Armor', 'Health'], 
+                      columns =['Alligator','Cheeta','Elephant','Buffalo'])
     print(df)
         
 def game_flow(self):
@@ -257,7 +283,8 @@ def main():
         Writes to stdout.
     """
 animalStats()
-animal_list = [Traits("Alligator", 8, 2, 9, 7), Traits("Cheeta", 10, 10, 3, 3), Traits("Elephant", 6, 4, 7, 6), Traits("Buffalo", 2, 2, 4, 4)]
+animal_list = [Traits("Alligator", 8, 2, 9, 7), Traits("Cheeta", 10, 10, 3, 3), 
+               Traits("Elephant", 6, 4, 7, 6), Traits("Buffalo", 2, 2, 4, 4)]
 PAnimal = Traits.select_animal_by_name(animal_list)
 game_flow(PAnimal)
 
