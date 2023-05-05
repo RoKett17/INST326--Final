@@ -59,12 +59,13 @@ class Traits:
         i = 3
         while i > 0 :
             act3 = input(f"\nChoose one to eat! You have {i} pick(s) left: ")
+            while True:
             #updates initalized set
-            userOption.add(act3)
-            if act3.lower() in food:
-                food.remove(act3)
-            else:
-                pass
+                if act3.lower() in food:
+                    food.remove(act3)
+                    userOption.add(act3)
+                else:
+                    print("Please refer to the list of food and pick one of those.")
             print(f"{food}/n")
             i -= 1
         #set operations (4/6) 
