@@ -109,19 +109,15 @@ class Traits:
         food = {"boar", "monkey", "impala", "wolf", "snake", "hyena", "zebra", "ostrich"} 
         spoiled = {"monkey", "impala", "ostrich"}
         userOption = set() 
-        print(f"\nYou come across an assortment of carcasses in an abandoned cave.\n{food}\n")
         i = 3
         while i > 0 :
-            act3 = input(f"\nChoose one to eat! You have {i} pick(s) left: ")
-            while True:
-            #updates initalized set
-                if act3.lower() in food:
-                    food.remove(act3)
-                    userOption.add(act3)
-                else:
-                    print("Please refer to the list of food and pick one of those.")
             print(f"{food}/n")
-            i -= 1
+            act3 = input(f"\nChoose one to eat! You have {i} pick(s) left: ")
+            #updates initalized set
+            if act3.lower() in food:
+                food.remove(act3)
+                userOption.add(act3)
+                i -= 1
         #set operations (4/6) 
         overlap = bool(userOption & spoiled)
         if overlap == False:
