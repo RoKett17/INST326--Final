@@ -26,6 +26,9 @@ class Traits:
             health (int): The animal's health level from 0-10
             
         Side effects: Creates an animal object
+        
+        Written by:
+            Rohan Kettish
         """
         self.name = name
         self.attack = attack
@@ -44,6 +47,12 @@ class Traits:
             
         Returns:
             The animal's state after the situation is complete.
+            
+        Written by:
+            Rohan Kettish
+        
+        Skills demonstrated:
+            f-string expressions
         """
         
         act1 = input("""\nYou come across a herd of buffalo bathing in the mud.
@@ -77,6 +86,12 @@ class Traits:
             
         Returns:
             The animal's state after the situation is complete.
+            
+        Written by:
+            Garrett Hinson
+            
+        Skills demonstrated:
+            Conditional expressions
         """
         
         act2 = input("""You're super thirsty and come across a murky watering 
@@ -114,13 +129,20 @@ class Traits:
                 
             Returns:
                 The animal's situation after the situation is complete.
+                
+            Written by:
+                Matthew Byers
+                
+            Skills demonstrated:
+                set operations
         """
 
         food = {"boar", "monkey", "impala", "wolf", "snake", "hyena", "zebra", 
                 "ostrich"} 
         spoiled = {"monkey", "impala", "ostrich"}
         userOption = set() 
-        print(f"\nYou come across an assortment of carcasses in an abandoned cave.\n{food}\n")
+        print(f"""\nYou come across an assortment of carcasses in an abandoned 
+              cave.\n{food}\n""")
         i = 3
         while i > 0 :
             act3 = input(f"\nChoose one to eat! You have {i} pick(s) left: ")
@@ -156,6 +178,12 @@ class Traits:
         
         Returns:
             The health level of the current object.
+            
+        Written by:
+            Rohan Kettish
+            
+        Skills demonstrated:
+            magic methods
         """
         self.health -= other
         return self.health
@@ -169,6 +197,12 @@ class Traits:
                 
         Returns:
             The health level of the current object.
+            
+        Written by:
+            Matthew Byers
+            
+        Skills demonstrated:
+            magic methods
         """
         self.health += other
         return self.health
@@ -184,6 +218,12 @@ class Traits:
                 
         Returns:
             The animal the player chose.
+            
+        Written by:
+            Garrett Hinson
+            
+        Skills demonstrated:
+            regular expressions
         """
         while True:
             name = input("Enter the name of the animal you want to select: ")
@@ -200,6 +240,12 @@ def startingAnimal():
     
     Returns:
         The starting animal.
+        
+    Written by:
+        Garrett Hinson
+        
+    Skills demonstrated:
+        sequence unpacking
     """
     #sequence unpacking (3/6)
     gator, cheeta, eleph, buff = animalDicts()
@@ -226,6 +272,12 @@ def animalDicts():
     
     Returns:
         Each dictionary for each animal.
+        
+    Written by:
+        Rohan Kettish
+        
+    Skills demonstrated:
+        dictionaries
     """
     alligatorDict = {"name":"Alligator", "attack":8, "speed":2, "armor":9, 
                      "health":7}
@@ -243,6 +295,12 @@ def animalStats():
     
     Returns:
         A dataframe listing each of the animals and their stats.
+        
+    Written by:
+        Matthew Byers
+        
+    Skills demonstrated:
+        DataFrame objects
     """
     alligatorStats = ['8','2','9','7']
     cheetaStats = ['10','10','3','3']
@@ -262,6 +320,12 @@ def game_flow(self):
         
     Returns:
         The player's state whether they won or lost.
+        
+    Written by:
+        Rohan Kettish
+        
+    Skills demonstrated:
+        conditional statements
     """
     situations = [self.sit1, self.sit2, self.sit3]
     while True:
@@ -284,6 +348,9 @@ def main():
         
     Side Effects:
         Writes to stdout.
+        
+    Written by:
+        Garrett Hinson
     """
 animalStats()
 animal_list = [Traits("Alligator", 8, 2, 9, 7), Traits("Cheeta", 10, 10, 3, 3), 
