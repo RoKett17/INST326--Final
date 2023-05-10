@@ -49,7 +49,7 @@ class Traits:
             The animal's state after the situation is complete.
             
         Written by:
-            Rohan Kettish
+            Matthew Byers
         
         Skills demonstrated:
             f-string expressions
@@ -131,7 +131,7 @@ class Traits:
                 The animal's situation after the situation is complete.
                 
             Written by:
-                Matthew Byers
+                Rohan Kettish
                 
             Skills demonstrated:
                 set operations
