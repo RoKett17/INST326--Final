@@ -39,8 +39,9 @@ class Traits:
 
     def sit1(self):
         """Presents the player with the first scenario. Based on the player's
-            answer, current health, and current attack levels, their health will
-            either decrease by 4 levels, or their health will increase by 3.
+            answer, current health, and current attack levels, their 
+            health will either decrease by 4 levels, or their health 
+            will increase by 3.
             
         Args:
             None 
@@ -59,16 +60,16 @@ class Traits:
         \nDo you choose to attack or run? (a/r): """)
         if act1 == "a":
             if self.armor < 5 or self.attack < 5:
-                #herd = ran.randint(1,3)
-                print(f"""\nYou were no match for the power of this herd, 
-                your health has decreased by {4}.\n""") 
+                print(f"""\nYou were no match for the power of """, end = " ")
+                print(f"""this herd, your health has decreased. \n""") 
                 self.__isub__(4)
             else:
                 self.__iadd__(3)
-                print("\n\nYou feasted! You're health has increased")
+                print("\nYou feasted! You're health has increased.")
         else:
-            print("""You move on, looking for the next meal. You are hungry and 
-            lose health.""")                     #fstring expression (5/6)
+            print("""\nYou move on, looking for the next meal.""", end = " ")
+            print(""" You are hungry and lose health.""")                     
+            #fstring expression (5/6)
         print(f"""Your stats are currently:\n
         Attack: {self.attack}\n
         Speed: {self.speed}\n
@@ -96,23 +97,23 @@ class Traits:
             Conditional expressions
         """
         
-        act2 = input("""You're super thirsty and come across a murky watering 
-        hole where an agressive hippo is known to rest. \n
-        Do you drink from it? (y/n): """)
+        print("""\nYou're super thirsty and come across a murky """, end = " ")
+        print("""watering hole where an agressive hippo is known to rest.\n""")
+        act2 = input("""Do you drink from it? (y/n): """)
         if act2 not in ("y", "n"):
             print("Please enter either y or n")
         if act2 == "y":
             isHome = ran.randint(0, 1)
             if isHome == 0:
-                print("Drink up! Looks like the hippo wasn't home.")
+                print("\nDrink up! Looks like the hippo wasn't home.")
                 self.__iadd__(2)
             elif isHome == 1:
-                print("The hippo was home and angry, the hippo attacked")
+                print("\nThe hippo was home and angry, the hippo attacked.")
                 self.__isub__(ran.randint(2,4))
         elif act2 == "n":
             #conditional expression (1/6)
             self.__isub__(2) if self.speed > 6 else self.__isub__(4) and \
-                print("You may not get to another watering hole for a while")
+                print("\nYou may not get to another watering hole for a while")
         print(f"""Your stats are currently:\n
         Attack: {self.attack}\n
         Speed: {self.speed}\n
@@ -125,8 +126,8 @@ class Traits:
         """Presents the player with the third scenario. The player will choose
             three different animals from a list of animals. If the player
             chooses an animal that is considered 'spoiled', their health will
-            be decreased. If they do not choose an animal that is spoiled, their
-            health will increase.
+            be decreased. If they do not choose an animal that is spoiled, 
+            their health will increase.
             
             Args:
                 None.
@@ -145,8 +146,8 @@ class Traits:
                 "ostrich"} 
         spoiled = {"monkey", "impala", "ostrich"}
         userOption = set() 
-        print(f"""\nYou come across an assortment of carcasses in an abandoned 
-        cave.\n{food}\n""")
+        print(f"""\nYou come across an assortment of carcasses""", end = " ")
+        print(f"""in an abandoned cave.\n{food} \n""")
         i = 3
         while i > 0 :
             act3 = input(f"\nChoose one to eat! You have {i} pick(s) left: ")
@@ -154,18 +155,18 @@ class Traits:
             if act3.lower() in food:
                 food.remove(act3)
                 userOption.add(act3)
-                print(f"{food}/n")
+                print(f"""{food}\n""")
                 i -= 1
             else:
                 pass
         #set operations (4/6) 
         overlap = bool(userOption & spoiled)
         if overlap == False:
-            print(f"""You chose your food wisely. Your health is now 
-                  {self.__iadd__(3)}""")
+            print(f"""You chose your food wisely. Your health""",end = " ")
+            print(f"""is now {self.__iadd__(3)}""")
         else:
-            print(f"""Some of the food you ate was spoiled! Your health is now 
-                  {self.__isub__(3)}""")
+            print(f"""Some of the food you ate was spoiled!""", end = " ")
+            print(f""" Your health is now {self.__isub__(3)}""")
         print(f"""Your stats are currently:\n
         Attack: {self.attack}\n
         Speed: {self.speed}\n
@@ -179,8 +180,8 @@ class Traits:
         """Decreases the player's health by the specified amount.
         
         Args:
-            other: A second animal object used to decrease the current object's
-                health.
+            other: A second animal object used to decrease the 
+            current object's health.
         
         Returns:
             The health level of the current object.
@@ -198,8 +199,8 @@ class Traits:
         """Increases the player's health by the specified amount.
         
         Args:
-            other: A second animal object used to decrease the current object's
-                health.
+            other: A second animal object used to decrease the 
+            current object's health.
                 
         Returns:
             The health level of the current object.
@@ -214,13 +215,13 @@ class Traits:
         return self.health
     
     def select_animal_by_name(animal_list):
-        """Prompts the player to specify which animal they want to play the game
-            with, and validates their input based on spelling, and whether or
-            not the animal they chose is in the game.
+        """Prompts the player to specify which animal they want to play the 
+           game with, and validates their input based on spelling, 
+           and whether or not the animal they chose is in the game.
             
         Args:
-            animal_list: list of animal's that are available to play with in the
-                game.
+            animal_list: list of animals that are available to play 
+            with in the game.
                 
         Returns:
             The animal the player chose.
