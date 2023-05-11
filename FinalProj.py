@@ -205,7 +205,7 @@ class Traits:
             The health level of the current object.
             
         Written by:
-            Matthew Byers
+            Rohan Kettish
             
         Skills demonstrated:
             magic methods
@@ -248,7 +248,7 @@ def startingAnimal():
         The starting animal.
         
     Written by:
-        Garrett Hinson
+        Matthew Byers
         
     Skills demonstrated:
         sequence unpacking
