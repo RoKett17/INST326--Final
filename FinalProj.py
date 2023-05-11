@@ -1,7 +1,5 @@
-import argparse
 import random as ran
 import pandas as pd
-import sys 
 import re
 
 class Traits:
@@ -69,7 +67,6 @@ class Traits:
         else:
             print("""\nYou move on, looking for the next meal.""", end = " ")
             print(""" You are hungry and lose health.""")                     
-            #fstring expression (5/6)
         print(f"""Your stats are currently:\n
         Attack: {self.attack}\n
         Speed: {self.speed}\n
@@ -111,7 +108,6 @@ class Traits:
                 print("\nThe hippo was home and angry, the hippo attacked.")
                 self.__isub__(ran.randint(2,4))
         elif act2 == "n":
-            #conditional expression (1/6)
             self.__isub__(2) if self.speed > 6 else self.__isub__(4) and \
                 print("\nYou may not get to another watering hole for a while")
         print(f"""Your stats are currently:\n
@@ -151,15 +147,13 @@ class Traits:
         i = 3
         while i > 0 :
             act3 = input(f"\nChoose one to eat! You have {i} pick(s) left: ")
-            #updates initalized set
             if act3.lower() in food:
                 food.remove(act3)
                 userOption.add(act3)
                 print(f"""{food}\n""")
                 i -= 1
             else:
-                pass
-        #set operations (4/6) 
+                pass 
         overlap = bool(userOption & spoiled)
         if overlap == False:
             print(f"""You chose your food wisely. Your health""",end = " ")
@@ -175,7 +169,6 @@ class Traits:
 
         return self.sit3
     
-    #magic methods (2/6)
     def __isub__(self, other):
         """Decreases the player's health by the specified amount.
         
@@ -254,7 +247,6 @@ def startingAnimal():
     Skills demonstrated:
         sequence unpacking
     """
-    #sequence unpacking (3/6)
     gator, cheeta, eleph, buff = animalDicts()
 
     PAnimal = input("""From the list above, which animal would you like to use?
@@ -314,7 +306,6 @@ def animalStats():
     elephantStats = ['6','4','7','6']
     buffaloStats = ['2','2','4','4']
 
-    #Create DataFrame from lists
     df = pd.DataFrame(list(zip(alligatorStats, cheetaStats, elephantStats, 
                                buffaloStats)), 
                       index =['Attack', 'Speed', 'Armor', 'Health'], 
