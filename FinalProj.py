@@ -56,22 +56,24 @@ class Traits:
         """
         
         act1 = input("""\nYou come across a herd of buffalo bathing in the mud.
-                    \nDo you choose to attack or run? (a/r): """)
+        \nDo you choose to attack or run? (a/r): """)
         if act1 == "a":
             if self.armor < 5 or self.attack < 5:
                 #herd = ran.randint(1,3)
                 print(f"""\nYou were no match for the power of this herd, 
-                    your health has decreased by {4}.\n""") 
+                your health has decreased by {4}.\n""") 
                 self.__isub__(4)
             else:
                 self.__iadd__(3)
                 print("\n\nYou feasted! You're health has increased")
         else:
             print("""You move on, looking for the next meal. You are hungry and 
-                  lose health.""")                     #fstring expression (5/6)
-        print(f"""Your stats are currently:\nAttack: {self.attack}\n
-              Speed: {self.speed}\nArmor: {self.armor} \n
-              Health: {self.__isub__(ran.randint(1, 3))}\n""")
+            lose health.""")                     #fstring expression (5/6)
+        print(f"""Your stats are currently:\n
+        Attack: {self.attack}\n
+        Speed: {self.speed}\n
+        Armor: {self.armor} \n
+        Health: {self.__isub__(ran.randint(1, 3))}\n""")
         return self.sit1
     
     def sit2(self):
@@ -95,8 +97,8 @@ class Traits:
         """
         
         act2 = input("""You're super thirsty and come across a murky watering 
-                     hole where an agressive hippo is known to rest. \n
-                     Do you drink from it? (y/n): """)
+        hole where an agressive hippo is known to rest. \n
+        Do you drink from it? (y/n): """)
         if act2 not in ("y", "n"):
             print("Please enter either y or n")
         if act2 == "y":
@@ -111,9 +113,11 @@ class Traits:
             #conditional expression (1/6)
             self.__isub__(2) if self.speed > 6 else self.__isub__(4) and \
                 print("You may not get to another watering hole for a while")
-        print(f"""Your stats are currently:\nAttack: {self.attack}\n
-              Speed: {self.speed}\nArmor: {self.armor} \n
-              Health: {self.health}\n""")
+        print(f"""Your stats are currently:\n
+        Attack: {self.attack}\n
+        Speed: {self.speed}\n
+        Armor: {self.armor} \n
+        Health: {self.health}\n""")
 
         return self.sit2
         
@@ -142,7 +146,7 @@ class Traits:
         spoiled = {"monkey", "impala", "ostrich"}
         userOption = set() 
         print(f"""\nYou come across an assortment of carcasses in an abandoned 
-              cave.\n{food}\n""")
+        cave.\n{food}\n""")
         i = 3
         while i > 0 :
             act3 = input(f"\nChoose one to eat! You have {i} pick(s) left: ")
@@ -162,9 +166,11 @@ class Traits:
         else:
             print(f"""Some of the food you ate was spoiled! Your health is now 
                   {self.__isub__(3)}""")
-        print(f"""Your stats are currently:\nAttack: {self.attack}\n
-              Speed: {self.speed}\nArmor: {self.armor} \n
-              Health: {self.health}\n""")
+        print(f"""Your stats are currently:\n
+        Attack: {self.attack}\n
+        Speed: {self.speed}\n
+        Armor: {self.armor} \n
+        Health: {self.health}\n""")
 
         return self.sit3
     
